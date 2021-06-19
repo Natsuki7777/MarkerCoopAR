@@ -18,8 +18,20 @@
       </a-assets>
       <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
       <a-marker preset="hiro">
-        <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示） -->
         <a-entity gltf-model="#pin"></a-entity>
+      </a-marker>
+
+      <a-marker type="pattern" url="./assets/pattern.patt">
+        <a-sphere scale=".25 .25 .25" position="0 .5 0" color="#f00">
+          <a-animation
+            attribute="position"
+            to="0 1 0"
+            direction="alternate"
+            dur="2000"
+            repeat="indefinite"
+          >
+          </a-animation>
+        </a-sphere>
       </a-marker>
 
       <!-- AR用のカメラを置く -->
