@@ -15,12 +15,15 @@
     <a-scene embedded arjs="debugUIEnabled:false;">
       <a-assets>
         <a-asset-item id="pin" src="./assets/pin/pin.gltf"></a-asset-item>
-        <a-asset-item id="scene" src="./assets/scene/scene.gltf"></a-asset-item>
+        <a-asset-item
+          id="tokyo"
+          src="./assets/tokyo/53393503_bldg_6677.objf"
+        ></a-asset-item>
       </a-assets>
 
       <a-marker type="pattern" url="./assets/pattern.patt">
         <a-entity
-          gltf-model="#scene"
+          obj-model="obj: #tokyo"
           position="0 0 0"
           scale="0.1 0.1 0.1"
           animation-mixer
