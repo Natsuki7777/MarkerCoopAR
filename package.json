@@ -1,0 +1,19 @@
+{
+  "name": "markercoopar",
+  "version": "1.0.0",
+  "description": "making Coop mode by using marker AR",
+  "main": "scrip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natsukimizuno/MarkerCoopAR.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natsukimizuno/MarkerCoopAR/issues"
+  },
+  "homepage": "https://github.com/natsukimizuno/MarkerCoopAR#readme"
+}
