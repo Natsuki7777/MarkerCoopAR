@@ -9,9 +9,12 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
     <script src="./gesture-detector.js"></script>
     <script src="./gesture-handler.js"></script>
-    <script src="./script.js"></script>
+
     <a-scene
       arjs
       renderer="logarithmicDepthBuffer: true;"
@@ -32,17 +35,18 @@
         cursor="fuse: false; rayOrigin: mouse;"
       >
         <a-entity
+          class="model"
           gltf-model="#air"
           position="0 0 0"
           scale="0.1 0.1 0.1"
           animation-mixer
           gesture-handler
-          coop
         ></a-entity>
       </a-marker>
 
       <!-- AR用のカメラを置く -->
       <a-entity camera></a-entity>
     </a-scene>
+    <script src="./main.js"></script>
   </body>
 </html>

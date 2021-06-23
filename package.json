@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/natsukimizuno/MarkerCoopAR/issues"
   },
-  "homepage": "https://github.com/natsukimizuno/MarkerCoopAR#readme"
+  "homepage": "https://github.com/natsukimizuno/MarkerCoopAR#readme",
+  "dependencies": {
+    "firebase": "^8.6.8"
+  }
 }
