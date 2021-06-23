@@ -28,8 +28,6 @@ dataRef.on("value", (snapshot) => {
     y: data.scale[1],
     z: data.scale[2],
   });
-  console.log(entity.object3D);
-  console.log(data.rotation);
   entity.setAttribute("rotation", {
     x: data.rotation[0],
     y: data.rotation[1],
@@ -40,7 +38,7 @@ dataRef.on("value", (snapshot) => {
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
-    rotationFactor: { default: 20 },
+    rotationFactor: { default: 5 },
     minScale: { default: 0.3 },
     maxScale: { default: 8 },
   },
@@ -79,31 +77,19 @@ AFRAME.registerComponent("gesture-handler", {
 
   handleRotation: function (event) {
     if (this.isVisible) {
-      this.el.object3D.rotation.x +=
-        event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.y +=
+        event.detail.positionChange.x * this.data.rotationFactor;
+      this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      console.log("handeling rotaion");
-      console.log(this.el.object3D.rotation);
-      console.log(event.detail.positionChange.x);
-      console.log(event.detail.positionChange.y);
-      console.log(this.data.rotationFactor);
-      dataRef.update(
-        {
-          rotation: [
-            this.el.object3D.rotation.x,
-            this.el.object3D.rotation.y,
-            this.el.object3D.rotation.z,
-          ],
-        },
-        (e) => {
-          if (e) {
-            console.log("oh no..." + e);
-          } else {
-            ("great job!!!");
-          }
-        }
-      );
+      dataRef.update({
+        rotation: [
+          (this.el.object3D.rotation.x +=
+            event.detail.positionChange.y * this.data.rotationFactor),
+          (this.el.object3D.rotation.y +=
+            event.detail.positionChange.x * this.data.rotationFactor),
+          this.el.object3D.rotation.z,
+        ],
+      });
     }
   },
 
@@ -121,22 +107,13 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      dataRef.update(
-        {
-          scale: [
-            this.el.object3D.scale.x,
-            this.el.object3D.scale.y,
-            this.el.object3D.scale.z,
-          ],
-        },
-        (e) => {
-          if (e) {
-            console.log("oh no..." + e);
-          } else {
-            ("great job!!!");
-          }
-        }
-      );
+      dataRef.update({
+        scale: [
+          this.el.object3D.scale.x,
+          this.el.object3D.scale.y,
+          this.el.object3D.scale.z,
+        ],
+      });
     }
   },
 });
