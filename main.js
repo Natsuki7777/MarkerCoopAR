@@ -40,7 +40,7 @@ dataRef.on("value", (snapshot) => {
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
-    rotationFactor: { default: 5 },
+    rotationFactor: { default: 20 },
     minScale: { default: 0.3 },
     maxScale: { default: 8 },
   },
@@ -83,13 +83,27 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.y +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      dataRef.update({
-        rotation: [
-          this.el.object3D.rotation.x,
-          this.el.object3D.rotation.y,
-          this.el.object3D.rotation.z,
-        ],
-      });
+      console.log("handeling rotaion");
+      console.log(this.el.object3D.rotation);
+      console.log(event.detail.positionChange.x);
+      console.log(event.detail.positionChange.y);
+      console.log(this.data.rotationFactor);
+      dataRef.update(
+        {
+          rotation: [
+            this.el.object3D.rotation.x,
+            this.el.object3D.rotation.y,
+            this.el.object3D.rotation.z,
+          ],
+        },
+        (e) => {
+          if (e) {
+            console.log("oh no..." + e);
+          } else {
+            ("great job!!!");
+          }
+        }
+      );
     }
   },
 
