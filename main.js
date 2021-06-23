@@ -18,7 +18,6 @@ scaleRef.on("value", (snapshot) => {
   const data = snapshot.val();
   console.log(data);
   var entity = document.querySelector(".model");
-
   entity.setAttribute("scale", {
     x: data[0],
     y: data[1],
@@ -84,15 +83,11 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      dataRef.update({
-        rotation: [
-          (this.el.object3D.rotation.x +=
-            event.detail.positionChange.y * this.data.rotationFactor),
-          (this.el.object3D.rotation.y +=
-            event.detail.positionChange.x * this.data.rotationFactor),
-          this.el.object3D.rotation.z,
-        ],
-      });
+      rotationRef.update([
+        this.el.object3D.rotation.x,
+        this.el.object3D.rotation.y,
+        this.el.object3D.rotation.z,
+      ]);
     }
   },
 
@@ -110,13 +105,11 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      scaleRef.update({
-        scale: [
-          this.el.object3D.scale.x,
-          this.el.object3D.scale.y,
-          this.el.object3D.scale.z,
-        ],
-      });
+      scaleRef.update([
+        this.el.object3D.scale.x,
+        this.el.object3D.scale.y,
+        this.el.object3D.scale.z,
+      ]);
     }
   },
 });
