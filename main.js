@@ -28,10 +28,10 @@ dataRef.on("value", (snapshot) => {
     y: data.scale[1],
     z: data.scale[2],
   });
-  entity.setAttribute("rotaion", {
-    x: data.rotaion[0],
-    y: data.rotaion[1],
-    z: data.rotaion[2],
+  entity.setAttribute("rotation", {
+    x: data.rotation[0],
+    y: data.rotation[1],
+    z: data.rotation[2],
   });
 });
 
@@ -83,7 +83,7 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.y * this.data.rotationFactor;
       dataRef.update(
         {
-          rotaion: [
+          rotation: [
             this.el.object3D.rotation.x,
             this.el.object3D.rotation.y,
             this.el.object3D.rotation.z,
