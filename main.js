@@ -76,19 +76,21 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleRotation: function (event) {
+    console.log(event.detail.positionChange);
     if (this.isVisible) {
+      var newx =
+        this.el.object3D.rotation.x +
+        event.detail.positionChange.y * this.data.rotationFactor;
+      var newy =
+        this.el.object3D.rotation.y +
+        event.detail.positionChange.x * this.data.rotationFactor;
+
       this.el.object3D.rotation.y +=
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
       dataRef.update({
-        rotation: [
-          (this.el.object3D.rotation.x +=
-            event.detail.positionChange.y * this.data.rotationFactor),
-          (this.el.object3D.rotation.y +=
-            event.detail.positionChange.x * this.data.rotationFactor),
-          this.el.object3D.rotation.z,
-        ],
+        rotation: [newx, newy, this.el.object3D.rotation.z],
       });
     }
   },
