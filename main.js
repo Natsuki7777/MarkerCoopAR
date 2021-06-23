@@ -81,22 +81,22 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      dataRef.update(
-        {
-          rotation: [
-            this.el.object3D.rotation.x,
-            this.el.object3D.rotation.y,
-            this.el.object3D.rotation.z,
-          ],
-        },
-        (e) => {
-          if (e) {
-            console.log("oh no..." + e);
-          } else {
-            ("great job!!!");
-          }
-        }
-      );
+      // dataRef.update(
+      //   {
+      //     rotation: [
+      //       this.el.object3D.rotation.x,
+      //       this.el.object3D.rotation.y,
+      //       this.el.object3D.rotation.z,
+      //     ],
+      //   },
+      //   (e) => {
+      //     if (e) {
+      //       console.log("oh no..." + e);
+      //     } else {
+      //       ("great job!!!");
+      //     }
+      //   }
+      // );
     }
   },
 
