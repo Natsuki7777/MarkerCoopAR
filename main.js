@@ -38,7 +38,7 @@ dataRef.on("value", (snapshot) => {
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
-    rotationFactor: { default: 50 },
+    rotationFactor: { default: 5 },
     minScale: { default: 0.3 },
     maxScale: { default: 8 },
   },
@@ -81,22 +81,13 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      // dataRef.update(
-      //   {
-      //     rotation: [
-      //       this.el.object3D.rotation.x,
-      //       this.el.object3D.rotation.y,
-      //       this.el.object3D.rotation.z,
-      //     ],
-      //   },
-      //   (e) => {
-      //     if (e) {
-      //       console.log("oh no..." + e);
-      //     } else {
-      //       ("great job!!!");
-      //     }
-      //   }
-      // );
+      dataRef.update({
+        rotation: [
+          this.el.object3D.rotation.x,
+          this.el.object3D.rotation.y,
+          this.el.object3D.rotation.z,
+        ],
+      });
     }
   },
 
@@ -114,22 +105,22 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      dataRef.update(
-        {
-          scale: [
-            this.el.object3D.scale.x,
-            this.el.object3D.scale.y,
-            this.el.object3D.scale.z,
-          ],
-        },
-        (e) => {
-          if (e) {
-            console.log("oh no..." + e);
-          } else {
-            ("great job!!!");
-          }
-        }
-      );
+      // dataRef.update(
+      //   {
+      //     scale: [
+      //       this.el.object3D.scale.x,
+      //       this.el.object3D.scale.y,
+      //       this.el.object3D.scale.z,
+      //     ],
+      //   },
+      //   (e) => {
+      //     if (e) {
+      //       console.log("oh no..." + e);
+      //     } else {
+      //       ("great job!!!");
+      //     }
+      //   }
+      // );
     }
   },
 });
