@@ -25,16 +25,16 @@ scaleRef.on("value", (snapshot) => {
   });
 });
 
-rotationRef.on("value", (snapshot) => {
-  const data = snapshot.val();
-  console.log(data);
-  var entity = document.querySelector(".model");
-  entity.setAttribute("rotation", {
-    x: data[0],
-    y: data[1],
-    z: data[2],
-  });
-});
+// rotationRef.on("value", (snapshot) => {
+//   const data = snapshot.val();
+//   console.log(data);
+//   var entity = document.querySelector(".model");
+//   entity.setAttribute("rotation", {
+//     x: data[0],
+//     y: data[1],
+//     z: data[2],
+//   });
+// });
 
 AFRAME.registerComponent("gesture-handler", {
   schema: {
@@ -83,11 +83,11 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      // rotationRef.set([
-      //   this.el.object3D.rotation.x,
-      //   this.el.object3D.rotation.y,
-      //   this.el.object3D.rotation.z,
-      // ]);
+      rotationRef.set([
+        this.el.object3D.rotation.x,
+        this.el.object3D.rotation.y,
+        this.el.object3D.rotation.z,
+      ]);
     }
   },
 
