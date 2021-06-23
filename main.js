@@ -52,13 +52,11 @@ AFRAME.registerComponent("gesture-handler", {
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;
 
-    this.rotation_x;
-    this.rotation_y;
     rotationRef.once("value", (snapshot) => {
       var data = snapshot.val();
       console.log(data);
-      this.rotation_x = data.x;
-      this.rotation_y = data.y;
+      this.rotation_x = data[0];
+      this.rotation_y = data[1];
     });
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
