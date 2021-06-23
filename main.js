@@ -12,26 +12,28 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
-console.log(database);
-var dataRef = firebase.database().ref("/");
-dataRef.on("value", (snapshot) => {
+var scaleRef = firebase.database().ref("/scale");
+var rotationRef = firebase.database().ref("/rotation");
+scaleRef.on("value", (snapshot) => {
   const data = snapshot.val();
   console.log(data);
   var entity = document.querySelector(".model");
-  entity.setAttribute("position", {
-    x: data.position[0],
-    y: data.position[1],
-    z: data.position[2],
-  });
+
   entity.setAttribute("scale", {
-    x: data.scale[0],
-    y: data.scale[1],
-    z: data.scale[2],
+    x: data[0],
+    y: data[1],
+    z: data[2],
   });
+});
+
+rotationRef.on("value", (snapshot) => {
+  const data = snapshot.val();
+  console.log(data);
+  var entity = document.querySelector(".model");
   entity.setAttribute("rotation", {
-    x: data.rotation[0],
-    y: data.rotation[1],
-    z: data.rotation[2],
+    x: data[0],
+    y: data[1],
+    z: data[2],
   });
 });
 
@@ -82,15 +84,15 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
-      // dataRef.update({
-      //   rotation: [
-      //     (this.el.object3D.rotation.x +=
-      //       event.detail.positionChange.y * this.data.rotationFactor),
-      //     (this.el.object3D.rotation.y +=
-      //       event.detail.positionChange.x * this.data.rotationFactor),
-      //     this.el.object3D.rotation.z,
-      //   ],
-      // });
+      dataRef.update({
+        rotation: [
+          (this.el.object3D.rotation.x +=
+            event.detail.positionChange.y * this.data.rotationFactor),
+          (this.el.object3D.rotation.y +=
+            event.detail.positionChange.x * this.data.rotationFactor),
+          this.el.object3D.rotation.z,
+        ],
+      });
     }
   },
 
@@ -108,7 +110,7 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      dataRef.update({
+      scaleRef.update({
         scale: [
           this.el.object3D.scale.x,
           this.el.object3D.scale.y,
