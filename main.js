@@ -77,9 +77,9 @@ AFRAME.registerComponent("gesture-handler", {
 
   handleRotation: function (event) {
     if (this.isVisible) {
-      this.el.object3D.rotation.y +=
-        event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
+        event.detail.positionChange.x * this.data.rotationFactor;
+      this.el.object3D.rotation.y +=
         event.detail.positionChange.y * this.data.rotationFactor;
       dataRef.update({
         rotation: [
@@ -105,22 +105,22 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      // dataRef.update(
-      //   {
-      //     scale: [
-      //       this.el.object3D.scale.x,
-      //       this.el.object3D.scale.y,
-      //       this.el.object3D.scale.z,
-      //     ],
-      //   },
-      //   (e) => {
-      //     if (e) {
-      //       console.log("oh no..." + e);
-      //     } else {
-      //       ("great job!!!");
-      //     }
-      //   }
-      // );
+      dataRef.update(
+        {
+          scale: [
+            this.el.object3D.scale.x,
+            this.el.object3D.scale.y,
+            this.el.object3D.scale.z,
+          ],
+        },
+        (e) => {
+          if (e) {
+            console.log("oh no..." + e);
+          } else {
+            ("great job!!!");
+          }
+        }
+      );
     }
   },
 });
