@@ -52,6 +52,8 @@ AFRAME.registerComponent("gesture-handler", {
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;
 
+    this.rotation_x;
+    this.rotation_y;
     rotationRef.once("value", (snapshot) => {
       var data = snapshot.val();
       console.log(data);
