@@ -116,7 +116,7 @@ AFRAME.registerComponent("gesture-handler", {
 
       dataRef.update(
         {
-          rotaion: [
+          scale: [
             this.el.object3D.scale.x,
             this.el.object3D.scale.y,
             this.el.object3D.scale.z,
