@@ -39,7 +39,7 @@ rotationRef.on("value", (snapshot) => {
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
-    rotationFactor: { default: 5 },
+    rotationFactor: { default: 100 },
     minScale: { default: 0.3 },
     maxScale: { default: 8 },
   },
