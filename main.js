@@ -28,6 +28,8 @@ dataRef.on("value", (snapshot) => {
     y: data.scale[1],
     z: data.scale[2],
   });
+  console.log(entity.object3D);
+  console.log(data.rotation);
   entity.setAttribute("rotation", {
     x: data.rotation[0],
     y: data.rotation[1],
