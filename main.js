@@ -105,7 +105,7 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
 
-      scaleRef.update([
+      scaleRef.set([
         this.el.object3D.scale.x,
         this.el.object3D.scale.y,
         this.el.object3D.scale.z,
