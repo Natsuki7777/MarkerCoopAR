@@ -52,6 +52,12 @@ AFRAME.registerComponent("gesture-handler", {
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;
 
+    rotationRef.once("value", (data) => {
+      console.log(data);
+      this.rotation_x = data.x;
+      this.rotation_y = data.y;
+    });
+
     this.el.sceneEl.addEventListener("markerFound", (e) => {
       this.isVisible = true;
     });
@@ -83,14 +89,17 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
+      this.rotation_x +=
+        event.detail.positionChange.y * this.data.rotationFactor;
+      this.rotation_y +=
+        event.detail.positionChange.x * this.data.rotationFactor;
       rotationRef.set([
-        this.el.object3D.rotation.x,
-        this.el.object3D.rotation.y,
+        this.rotation_x,
+        this.rotation_y,
         this.el.object3D.rotation.z,
       ]);
     }
   },
-
   handleScale: function (event) {
     if (this.isVisible) {
       this.scaleFactor *=
